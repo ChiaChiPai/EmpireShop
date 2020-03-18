@@ -5,7 +5,7 @@
       <div class="jumbotron-fluid">
           <div class="bg-cover main_banner position-relative">
             <div id="bannerMove">
-              <div class="position-absolute position-relative d-none d-md-block bannerMoveClass">
+              <div class="position-absolute position-relative d-none d-lg-block bannerMoveClass">
                 <a class="main_banner_center position-absolute" :class="{'active':BannerSwitch==='專屬傭兵' }" href="#" @click.prevent="tempBannerSwitch"><p class="d-none">專屬傭兵</p><img class="img-colorful" height="725" src="../../assets/images/center.png" alt=""></a>
                 <a class="main_banner_left position-absolute" href="#" :class="{'active':BannerSwitch==='獨家技術'}" @click.prevent="tempBannerSwitch"><p class="d-none">獨家技術</p><img class="img-colorful" height="725" src="../../assets/images/left.png" alt=""></a>
                 <a class="main_banner_right position-absolute" href="#" :class="{'active':BannerSwitch==='十大建設'}" @click.prevent="tempBannerSwitch"><p class="d-none">十大建設</p><img class="img-colorful" height="725" src="../../assets/images/right.png" alt=""></a>
