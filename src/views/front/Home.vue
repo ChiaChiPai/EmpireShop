@@ -32,7 +32,7 @@
               <div class="row align-items-center flex-column-reverse flex-lg-row">
                 <p class="h4 col-lg-7 mt-4 mt-md-0 px-5" style="line-height: 40px;">在人人自危的世界，只有擁有最多資源的的人才會是贏家，在這個地下商城裡，傭兵、裝備...應用盡有，所有你要變強的資源都幫你準備好了。讓我們一起重返榮耀吧 !</p>
                 <div class="col-lg-5">
-                  <img class="part_img w-100" src="../../assets/images/part-img.png" height="312" alt="">
+                  <img class="part_img w-100" src="../../assets/images/part-img.jpg" height="312" alt="">
                 </div>
               </div>
             </div>
