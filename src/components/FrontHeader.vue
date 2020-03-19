@@ -56,8 +56,9 @@ export default {
   },
   methods: {
     toNews () {
-      this.$router.push('/home').catch(() => {})
-      this.$emit('toNews')
+      const vm = this
+      vm.$router.push('/home').catch(() => {})
+      vm.$emit('toNews')
     }
   }
 }

@@ -116,7 +116,7 @@ export default {
     getCart () {
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`
       const vm = this
-      this.$http.get(api).then(response => {
+      vm.$http.get(api).then(response => {
         vm.carts = response.data.data.carts
       })
     },
@@ -137,9 +137,10 @@ export default {
       vm.$router.push('/cart')
     },
     getProductDetail (id) {
+      const vm = this
       $('#productModal').modal('hide')
       // this.$router.push(`/detail/${id}`);
-      this.$emit('cartUpdateDetail', id)
+      vm.$emit('cartUpdateDetail', id)
     }
   }
 }

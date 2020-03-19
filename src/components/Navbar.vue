@@ -44,15 +44,15 @@ export default {
     logout () {
       const api = `${process.env.VUE_APP_APIPATH}/logout`
       const vm = this
-      this.$http.post(api).then((response) => {
-        console.log(response.data)
+      vm.$http.post(api).then((response) => {
         if (response.data.success) { // 登入成功後
           vm.$router.push('/login') // 跳轉至首頁
         }
       })
     },
     backToHome () {
-      this.$router.push('/home')
+      const vm = this
+      vm.$router.push('/home')
     }
   }
 }

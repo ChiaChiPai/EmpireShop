@@ -109,8 +109,9 @@ export default {
     }
   },
   created () {
-    this.orderId = this.$route.params.orderId
-    this.getOrderList()
+    const vm = this
+    vm.orderId = vm.$route.params.orderId
+    vm.getOrderList()
     setTimeout(() => {
       var topPositon = $('#checkTop').offset().top
       $('html, body').animate({ scrollTop: topPositon }, 0)
@@ -137,7 +138,7 @@ export default {
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/pay/${vm.orderId}`
       vm.$http.post(api).then(response => {
         vm.isLoading = false
-        this.getOrderList()
+        vm.getOrderList()
       })
     }
   }

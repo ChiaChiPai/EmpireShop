@@ -32,8 +32,7 @@ export default {
     signin () {
       const api = `${process.env.VUE_APP_APIPATH}/admin/signin`
       const vm = this
-      this.$http.post(api, vm.user).then((response) => {
-        console.log(response.data)
+      vm.$http.post(api, vm.user).then((response) => {
         if (response.data.success) { // 登入成功後
           vm.$router.push('/admin/products') // 跳轉至首頁
         }
@@ -43,7 +42,6 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 html,
 body {

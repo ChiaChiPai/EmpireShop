@@ -179,7 +179,6 @@ export default {
       vm.isLoading = true
       this.$http.get(api).then(response => {
         vm.isLoading = false
-        console.log(response)
         vm.couponList = response.data.coupons
         vm.pagination = response.data.pagination
       })
@@ -224,14 +223,13 @@ export default {
       const vm = this
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/coupon/${vm.couponList[vm.deleteKey].id}`
       vm.isLoading = true
-      this.$http.delete(api).then(response => {
+      vm.$http.delete(api).then(response => {
         if (response.data.success) {
           vm.isLoading = false
-          this.getCoupon()
+          vm.getCoupon()
           $('#deleteModal').modal('hide')
         } else {
-          console.log('刪除失敗')
-          this.getCoupon()
+          vm.getCoupon()
           $('#deleteModal').modal('hide')
         }
       })

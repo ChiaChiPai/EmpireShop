@@ -40,7 +40,8 @@ export default {
   },
   methods: {
     getProductDetail (id) {
-      this.$router.push(`/detail/${id}`).catch(() => {}) // 路由路徑重複報錯，vue-router3.1後推和替換方法返回promise。promise被拒絕但是你沒有catch，所以報錯Uncaught。
+      const vm = this
+      vm.$router.push(`/detail/${id}`).catch(() => {}) // 路由路徑重複報錯，vue-router3.1後推和替換方法返回promise。promise被拒絕但是你沒有catch，所以報錯Uncaught。
     },
     addToCart (id, addTitle) {
       const vm = this
@@ -54,8 +55,7 @@ export default {
         if (titleSearch) {
           addQty = titleSearch.qty
           const deleteApi = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart/${titleSearch.id}`
-          this.$http.delete(deleteApi).then((response) => {
-            console.log(response)
+          vm.$http.delete(deleteApi).then((response) => {
           })
         }
         const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`
@@ -63,7 +63,7 @@ export default {
           product_id: id,
           qty: addQty + 1
         }
-        this.$http.post(api, { data: cart }).then((response) => {
+        vm.$http.post(api, { data: cart }).then((response) => {
           vm.$bus.$emit('updateCart')
           // vm.$bus.$emit('message:push', '加入購物車成功')
         })

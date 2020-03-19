@@ -31,15 +31,17 @@ export default {
     // 外面傳進來而觸發的訊息
     updateMessage (message, status) {
       const timestamp = Math.floor(new Date() / 1000)
-      this.messages.push({
+      const vm = this
+      vm.messages.push({
         message,
         status,
         timestamp
       })
-      this.removeMessageWithTiming(timestamp)
+      vm.removeMessageWithTiming(timestamp)
     },
     removeMessage (num) {
-      this.messages.splice(num, 1)
+      const vm = this
+      vm.messages.splice(num, 1)
     },
     removeMessageWithTiming (timestamp) {
       const vm = this

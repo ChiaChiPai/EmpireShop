@@ -114,9 +114,10 @@ export default {
     }
   },
   created () {
-    this.detailId = this.$route.params.detailId
-    this.getProductDetail()
-    this.getHotProducts()
+    const vm = this
+    vm.detailId = vm.$route.params.detailId
+    vm.getProductDetail()
+    vm.getHotProducts()
     $('html, body').animate({ scrollTop: 0 }, 0)
   },
   methods: {
@@ -146,18 +147,20 @@ export default {
     },
     goBackCategory () {
       const vm = this
-      vm.$router.push({ path: '/shop', query: { category: this.productDetail.category } })
+      vm.$router.push({ path: '/shop', query: { category: vm.productDetail.category } })
       // 使用 query 將目前在的分頁的 productDetail.category 傳回 /shop 的頁面
     },
     hotProductDetail (id) {
-      this.detailId = id // 將 this.datailId 重新指向熱門商品的 item.id，之後再觸發一次 this.getProductDetail() 得到熱銷商品的資訊
-      this.$router.push(`/detail/${this.detailId}`)
-      this.getProductDetail()
+      const vm = this
+      vm.detailId = id // 將 vm.datailId 重新指向熱門商品的 item.id，之後再觸發一次 vm.getProductDetail() 得到熱銷商品的資訊
+      vm.$router.push(`/detail/${vm.detailId}`)
+      vm.getProductDetail()
     },
     cartUpdate (id) {
-      this.detailId = id
-      this.$router.push(`/detail/${id}`)
-      this.getProductDetail()
+      const vm = this
+      vm.detailId = id
+      vm.$router.push(`/detail/${id}`)
+      vm.getProductDetail()
     },
     addToCart (id, addTitle, qty = 1) {
       const vm = this
@@ -173,7 +176,6 @@ export default {
           addQty = titleSearch.qty
           const deleteApi = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart/${titleSearch.id}`
           vm.$http.delete(deleteApi).then((response) => {
-            console.log(response)
           })
         }
         const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`

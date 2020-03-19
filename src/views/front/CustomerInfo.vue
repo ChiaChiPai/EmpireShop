@@ -135,7 +135,8 @@ export default {
     }
   },
   created () {
-    this.getPrice()
+    const vm = this
+    vm.getPrice()
     setTimeout(() => {
       var topPositon = $('#infoTop').offset().top
       $('html, body').animate({ scrollTop: topPositon }, 0)
@@ -164,7 +165,6 @@ export default {
           })
         } else {
           vm.isLoading = false
-          console.log('欄位不完整')
         }
       })
     }

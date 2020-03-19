@@ -133,14 +133,15 @@ export default {
     }
   },
   created () {
-    this.getOrder()
+    const vm = this
+    vm.getOrder()
   },
   methods: {
     getOrder (page = 1) {
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/orders?page=${page}`
       const vm = this
       vm.isLoading = true
-      this.$http.get(api).then(response => {
+      vm.$http.get(api).then(response => {
         vm.isLoading = false
         vm.orderList = response.data.orders
         vm.pagination = response.data.pagination
@@ -155,9 +156,8 @@ export default {
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/order/${id}`
       const vm = this
       vm.isLoading = true
-      this.$http.put(api, { data: vm.tempOrder }).then(response => {
+      vm.$http.put(api, { data: vm.tempOrder }).then(response => {
         vm.isLoading = false
-        console.log(response)
         $('#orderModal').modal('hide')
       })
     }

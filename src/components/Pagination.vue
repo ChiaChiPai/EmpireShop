@@ -30,7 +30,8 @@ export default {
   props: ['childPaginations'],
   methods: {
     getPagination (page) {
-      this.$emit('changePage', page)
+      const vm = this
+      vm.$emit('changePage', page)
     }
   }
 }

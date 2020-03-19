@@ -145,7 +145,8 @@ export default {
     }
   },
   created () {
-    this.getCart()
+    const vm = this
+    vm.getCart()
     setTimeout(() => {
       var topPositon = $('#cartTop').offset().top
       $('html, body').animate({ scrollTop: topPositon }, 0)
@@ -170,9 +171,8 @@ export default {
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart/${id}`
       vm.isLoading = true
       vm.$http.delete(api).then(response => {
-        console.log(response)
         vm.isLoading = false
-        this.getCart()
+        vm.getCart()
       })
     },
     enterCoupon () {
@@ -181,7 +181,7 @@ export default {
       vm.isLoading = true
       vm.$http.post(api, { data: { code: vm.couponCode } }).then(response => {
         vm.isLoading = false
-        this.getCart()
+        vm.getCart()
       })
     },
     changeQty (qty, itemId, cartId, key) {
@@ -195,7 +195,7 @@ export default {
           qty: qty
         }
         vm.$http.post(api, { data: cart }).then((response) => {
-          this.getCart()
+          vm.getCart()
           vm.isLoading = false
         })
       })

@@ -66,9 +66,10 @@ export default {
     }
   },
   created () {
-    this.getAllProducts()
-    this.getPageProducts()
-    this.getParams()
+    const vm = this
+    vm.getAllProducts()
+    vm.getPageProducts()
+    vm.getParams()
     setTimeout(() => {
       var topPositon = $('#shopTop').offset().top
       $('html, body').animate({ scrollTop: topPositon }, 800)
@@ -80,7 +81,7 @@ export default {
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products/all`
       const vm = this
       vm.isLoading = true
-      this.$http.get(api).then((response) => {
+      vm.$http.get(api).then((response) => {
         vm.allProducts = response.data.products
         vm.isLoading = false
       })
@@ -90,7 +91,7 @@ export default {
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products?page=${page}`
       const vm = this
       vm.isLoading = true
-      this.$http.get(api).then((response) => {
+      vm.$http.get(api).then((response) => {
         vm.pageProducts = response.data.products
         vm.pagination = response.data.pagination
         vm.isLoading = false
@@ -99,8 +100,9 @@ export default {
 
     // 從 detail 麵包屑回來的資料
     getParams () {
-      if (this.$route.query.category) {
-        this.tempMenu = this.$route.query.category
+      const vm = this
+      if (vm.$route.query.category) {
+        vm.tempMenu = vm.$route.query.category
       }
       // 接收 Detail 麵包屑回來的網址資料會變成 shop?category=獨家技術
       // 這時就可以使用 this.$route.query.category 去撈 "category=獨家技術" 的資料
@@ -111,7 +113,7 @@ export default {
     tempMenuSwitch (e) {
       const vm = this
       vm.tempMenu = e.target.text
-      if (this.$route.query.category) {
+      if (vm.$route.query.category) {
         vm.$router.push('/shop')
       }
     }
