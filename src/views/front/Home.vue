@@ -94,9 +94,10 @@ export default {
         initialSlide: 0,
         slidesPerView: 3,
         direction: 'horizontal',
-        loop: true,
-        autoplay: true,
-        speed: 1500,
+        autoplay: {
+          delay: 5000,
+          disableOnInteraction: false
+        },
         navigation: {
           nextEl: '.swiper-button-next.sw',
           prevEl: '.swiper-button-prev.sw'
@@ -136,7 +137,6 @@ export default {
       const vm = this
       vm.isLoading = true
       this.$http.get(api, { withCredentials: false }).then((response) => {
-        console.log(response)
         const dataArr = response.data.data
         vm.fb_Id = dataArr.map(function (item) {
           return item.id
@@ -155,7 +155,6 @@ export default {
         // vm.$http.get(`/graph/v2.2/${id}?fields=attachments&access_token=EAAL5Tx0lRX0BAPWlyqaK1X82SwV29NyW1VPoSfKsI5TiXghZAVugInKEFhuNdWfYsG6DWKg5qrBTOqRnC5QUrIyRQnaGZAu2jZAv3iqFHpZA1gWdyEMxoMEPw9kUgA9frCZArxDKO7h0YZC8fvmA8ZAHaapgI4RXYe0wUhZCrK4NYAZDZD`).then((response) => {
         vm.$http.get(`https://cors-anywhere.herokuapp.com/https://graph.facebook.com/v2.2/${id}?fields=attachments&access_token=EAAL5Tx0lRX0BAPWlyqaK1X82SwV29NyW1VPoSfKsI5TiXghZAVugInKEFhuNdWfYsG6DWKg5qrBTOqRnC5QUrIyRQnaGZAu2jZAv3iqFHpZA1gWdyEMxoMEPw9kUgA9frCZArxDKO7h0YZC8fvmA8ZAHaapgI4RXYe0wUhZCrK4NYAZDZD`, { withCredentials: false }).then((response) => {
           vm.pageContent.push(response.data.attachments.data[0]) // 問題: 為什麼 console 會說 data
-          console.log(response)
         })
       }
       vm.isLoading = false
@@ -204,7 +203,6 @@ export default {
 const originWidth = window.innerWidth
 if (window.screen.availWidth !== originWidth) { // 如果一開始視窗不是全視窗
   const widthOffset = (originWidth - window.screen.availWidth) * 0.5
-  console.log(widthOffset)
   setTimeout(() => {
     document.querySelector('#bannerMove').style.left = `${widthOffset}px`
   }, 10)
