@@ -61,9 +61,6 @@ export default {
       vm.updateMessage(message, status)
     })
   }
-  // beforeDestroy: function() {
-  //   this.$bus.$off('message:push');
-  // }
 }
 </script>
 

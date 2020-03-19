@@ -64,9 +64,9 @@
           <div class="modal-body">
             <div class="row">
               <div class="col-12">
-                <!-- <div class="form-row">
+                <div class="form-row">
                   <div class="form-group col-md-6">購買人: {{ tempOrder.user.name }}</div>
-                </div> --> <!-- 加上 tempOrder.user.name 就會跳錯-->
+                </div>
                 <div class="form-row">
                   <div class="form-group col-md-6">
                     <label for="origin_price">應付款項</label>
@@ -114,12 +114,19 @@ export default {
   },
   data () {
     return {
-      orderList: {
-        products: [],
-        user: []
-      },
+      orderList: [{
+        products: {},
+        user: {
+          name: '',
+          tel: '',
+          email: '',
+          address: ''
+        }
+      }], // 要注意資料的格式，不然資料讀取會出錯
       tempOrder: {
-        user: []
+        user: {
+          name: ''
+        }
       },
       pagination: [],
       isLoading: false
@@ -129,7 +136,7 @@ export default {
     this.getOrder()
   },
   methods: {
-    getOrder (page = 2) {
+    getOrder (page = 1) {
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/orders?page=${page}`
       const vm = this
       vm.isLoading = true
@@ -137,8 +144,6 @@ export default {
         vm.isLoading = false
         vm.orderList = response.data.orders
         vm.pagination = response.data.pagination
-        vm.isLoading = false
-        vm.tempOrder = {}
       })
     },
     openEditModel (item) {

@@ -112,9 +112,6 @@ export default {
       vm.addMessage()
     })
   },
-  // beforeDestroy: function() {
-  //   this.$bus.$off('updateCart');
-  // },
   methods: {
     getCart () {
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`
@@ -126,9 +123,9 @@ export default {
     addMessage () {
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`
       const vm = this
-      this.$http.get(api).then(response => {
+      vm.$http.get(api).then(response => {
         vm.carts = response.data.data.carts
-        vm.$bus.$emit('message:push', '已加入購物車', 'warning')
+        vm.$bus.$emit('message:push', '加入購物車成功')
       })
     },
     openModel () {

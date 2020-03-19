@@ -27,11 +27,7 @@
 
 <script>
 export default {
-  props: {
-    childPaginations: {
-      type: Object
-    }
-  },
+  props: ['childPaginations'],
   methods: {
     getPagination (page) {
       this.$emit('changePage', page)

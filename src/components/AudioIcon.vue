@@ -1,6 +1,6 @@
 <template>
   <div>
-    <audio class="audioPlay" autoplay loop controls hidden>
+    <audio id="audioPlay">
       <source src="../assets/voice/ageMusic.mp3">
     </audio>
     <a href="#" class="bar-c" @click.prevent="mute">
@@ -21,20 +21,20 @@ export default {
       clickMute: false
     }
   },
-  // created(){
-  //   this.volumnSet();
-  // },
+  mounted () {
+    const player = document.querySelector('#audioPlay')
+    player.play() // 要在 mounted html 程式碼渲染出來後才抓的到 DOM
+    player.volume = 0.3
+    player.loop = true
+  },
   methods: {
-    // volumnSet(){
-    //   document.querySelector(".audioPlay").volumn = 0.3;
-    // },
     mute () {
       const vm = this
       vm.clickMute = !vm.clickMute
       if (vm.clickMute) {
-        document.querySelector('.audioPlay').muted = true
+        document.querySelector('#audioPlay').muted = true
       } else {
-        document.querySelector('.audioPlay').muted = false
+        document.querySelector('#audioPlay').muted = false
       }
     }
   }
