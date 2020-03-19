@@ -136,6 +136,7 @@ export default {
       const vm = this
       vm.isLoading = true
       this.$http.get(api).then((response) => {
+        console.log(response)
         const dataArr = response.data.data
         vm.fb_Id = dataArr.map(function (item) {
           return item.id
