@@ -31,7 +31,7 @@
             <h4 class="text-dark text-center py-1 mb-0 cart-cal-header mt-2 mb-3">購買資訊</h4>
             <div class="form-row">
               <div class="form-group col-md-6">
-                <label for="username" class="h6 font-weight-bold">收件人姓名</label>
+                <label for="username" class="h6 font-weight-bold">收件人姓名<span style="color:red;">*</span></label>
                 <input
                   type="text"
                   class="form-control bg-transparent"
@@ -45,22 +45,22 @@
                 <span class="text-danger" v-if="errors.has('name')">姓名必須輸入</span>
               </div>
               <div class="form-group col-md-6">
-                <label for="tel" class="h6 font-weight-bold">手機號碼</label>
+                <label for="tel" class="h6 font-weight-bold">手機號碼<span style="color:red;">*</span></label>
                 <input type="tel" name="手機號碼" id="tel" class="form-control bg-transparent"
                   :class="{'is-invalid':errors.has('手機號碼')}" v-validate="'required|numeric|digits:10|cellphone'"
-                  placeholder="請輸入收件者手機" v-model="form.user.tel" maxlength="10">
+                  placeholder="0912345678" v-model="form.user.tel" maxlength="10">
                 <span class="text-danger" v-if="errors.has('手機號碼')">{{errors.first('手機號碼')}}</span>
               </div>
             </div>
             <div class="form-group">
-              <label for="useremail" class="h6 font-weight-bold">Email</label>
+              <label for="useremail" class="h6 font-weight-bold">Email<span style="color:red;">*</span></label>
               <input
                 type="email"
                 class="form-control bg-transparent"
                 :class="{'is-invalid':errors.has('email')}"
                 name="email"
                 id="useremail"
-                placeholder="請輸入 Email"
+                placeholder="example@mail.com"
                 v-model="form.user.email"
                 v-validate="'required|email'"
               />
@@ -68,7 +68,7 @@
             </div>
 
             <div class="form-group">
-              <label for="usertel" class="h6 font-weight-bold">地址</label>
+              <label for="usertel" class="h6 font-weight-bold">地址<span style="color:red;">*</span></label>
               <input
                 type="text"
                 class="form-control bg-transparent"

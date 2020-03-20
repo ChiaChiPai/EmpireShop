@@ -51,14 +51,14 @@
                 <tr>
                   <td>付款狀態 :</td>
                   <td class="text-danger font-weight-bold" v-if="!orderList.is_paid">尚未付款</td>
-                  <td class="text-light font-weight-bold" v-else>付款完成</td>
+                  <td class="text-light font-weight-bold" v-else>已付款完成，回商城逛逛吧 !!</td>
                 </tr>
               </tbody>
             </table>
 
             <div class="text-center mt-5">
               <button class="btn btn-dark btn-lg w-100" v-if="!orderList.is_paid" @click.prevent="payComfirm">確認付款</button>
-              <router-link class="btn btn-dark btn-lg w-100" v-else to="/home">回首頁</router-link>
+              <router-link class="btn btn-dark btn-lg w-100" v-else to="/shop">商城逛逛</router-link>
             </div>
           </form>
           <!-- 訂單資料 -->
