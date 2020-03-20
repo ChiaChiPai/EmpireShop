@@ -57,7 +57,7 @@ export default {
   methods: {
     toNews () {
       const vm = this
-      vm.$router.push('/home').catch(() => {})
+      vm.$router.push('/home').catch(console.log('error'))
       vm.$emit('toNews')
     }
   }

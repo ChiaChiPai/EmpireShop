@@ -139,7 +139,7 @@ export default {
       vm.isLoading = true
       vm.$http.get(api, { withCredentials: false }).then((response) => {
         const dataArr = response.data.data
-        vm.fb_Id = dataArr.map(function (item) {
+        vm.fb_Id = dataArr.map((item) => {
           return item.id
         }
         )
@@ -172,14 +172,14 @@ export default {
     tempBannerSwitch (e) {
       const vm = this
       vm.BannerSwitch = e.currentTarget.text
-      var topPositon = $('#hotProduct').offset().top
+      const topPositon = $('#hotProduct').offset().top
       $('html, body').animate({ scrollTop: topPositon }, 800)
     }
   },
   computed: {
-    randomProducts: function () { // 之前我用 randomProducts(){..}不行??
+    randomProducts () {
       const vm = this
-      const filterData = vm.allProducts.filter(function (item) {
+      const filterData = vm.allProducts.filter((item) => {
         return vm.BannerSwitch === item.category
       })
       const newArray = []
@@ -210,7 +210,6 @@ if (window.screen.availWidth !== originWidth) { // 如果一開始視窗不是�
   }, 10)
   window.onresize = function () {
     const normalWidth = window.innerWidth
-    // const normalHeight = window.innerHeight
     if (normalWidth !== originWidth) {
       const tempWidth = (normalWidth - originWidth) * 0.5
       document.querySelector('#bannerMove').style.left = `${widthOffset + tempWidth || 0}px`
@@ -221,7 +220,6 @@ if (window.screen.availWidth !== originWidth) { // 如果一開始視窗不是�
 } else {
   window.onresize = function () { // 如果一開始視窗就是全視窗
     const normalWidth = window.innerWidth
-    // const normalHeight = window.innerHeight
     if (normalWidth !== originWidth) {
       const tempWidth = (normalWidth - originWidth) * 0.5
       document.querySelector('#bannerMove').style.left = `${tempWidth || 0}px`

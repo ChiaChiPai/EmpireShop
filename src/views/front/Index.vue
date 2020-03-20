@@ -22,7 +22,7 @@ export default {
   methods: {
     thisToNews () {
       setTimeout(() => {
-        var newsPosition = $('#news').offset().top
+        const newsPosition = $('#news').offset().top
         $('html, body').animate({ scrollTop: newsPosition }, 1000)
       }, 100)
       // 設定 100 毫秒，等跳轉到首頁後，在把位置移到最新消息的區域

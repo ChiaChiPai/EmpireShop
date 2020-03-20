@@ -148,7 +148,7 @@ export default {
     const vm = this
     vm.getCart()
     setTimeout(() => {
-      var topPositon = $('#cartTop').offset().top
+      const topPositon = $('#cartTop').offset().top
       $('html, body').animate({ scrollTop: topPositon }, 0)
     }, 10)
   },

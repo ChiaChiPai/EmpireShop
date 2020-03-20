@@ -113,7 +113,7 @@ export default {
     vm.orderId = vm.$route.params.orderId
     vm.getOrderList()
     setTimeout(() => {
-      var topPositon = $('#checkTop').offset().top
+      const topPositon = $('#checkTop').offset().top
       $('html, body').animate({ scrollTop: topPositon }, 0)
     }, 10)
   },

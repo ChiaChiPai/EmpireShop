@@ -71,7 +71,7 @@ export default {
     vm.getPageProducts()
     vm.getParams()
     setTimeout(() => {
-      var topPositon = $('#shopTop').offset().top
+      const topPositon = $('#shopTop').offset().top
       $('html, body').animate({ scrollTop: topPositon }, 800)
     }, 10)
   },
@@ -125,7 +125,7 @@ export default {
     // 因為要做頁數出現與否的判斷，多新增的 filterProductsion 的資料讓 v-if="filterProducts.length>10" 判斷
     productsFilter () {
       const vm = this
-      var filterData = vm.allProducts.filter(function (item) {
+      const filterData = vm.allProducts.filter((item) => {
         if (vm.tempMenu === '全部商品') {
           return item
         } else {
@@ -134,7 +134,7 @@ export default {
       })
       vm.filterProducts = filterData
       if (filterData.length > 10) {
-        var moreFilterData = vm.pageProducts.filter(function (item) {
+        const moreFilterData = vm.pageProducts.filter((item) => {
           if (vm.tempMenu === '全部商品') {
             return item
           } else {

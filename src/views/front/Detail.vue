@@ -168,7 +168,7 @@ export default {
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`
       vm.$http.get(api).then(response => {
         vm.carts = response.data.data.carts
-        const titleSearch = vm.carts.find(function (item) {
+        const titleSearch = vm.carts.find((item) => {
           return item.product.title === addTitle
         })
         let addQty = 0

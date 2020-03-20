@@ -7,16 +7,14 @@ export default new Router({
   routes: [
     {
       path: '*',
-      redirect: '/404'
+      redirect: '/'
     },
     {
-      path: '',
-      name: 'Index',
+      path: '/',
       component: () => import('../views/front/Index.vue'),
-      redirect: '/home', // 如果什麼都沒有也會導回首頁
       children: [
         {
-          path: 'home',
+          path: '',
           name: 'Home',
           component: () => import('../views/front/Home.vue')
         },
@@ -44,7 +42,6 @@ export default new Router({
     },
     {
       path: '/cart',
-      name: 'Index',
       component: () => import('../views/front/Index.vue'),
       children: [
         {
@@ -62,7 +59,6 @@ export default new Router({
 
     {
       path: '/admin',
-      name: 'Dashboard',
       component: () => import('../views/back/Dashboard.vue'),
       meta: { requiresAuth: true },
       children: [

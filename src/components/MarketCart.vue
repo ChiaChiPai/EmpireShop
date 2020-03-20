@@ -108,7 +108,7 @@ export default {
   created () {
     const vm = this
     vm.getCart()
-    vm.$bus.$on('updateCart', function () {
+    vm.$bus.$on('updateCart', () => {
       vm.addMessage()
     })
   },

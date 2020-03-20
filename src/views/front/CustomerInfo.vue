@@ -138,7 +138,7 @@ export default {
     const vm = this
     vm.getPrice()
     setTimeout(() => {
-      var topPositon = $('#infoTop').offset().top
+      const topPositon = $('#infoTop').offset().top
       $('html, body').animate({ scrollTop: topPositon }, 0)
     }, 10)
   },
