@@ -169,16 +169,16 @@ export default {
       pagination: {}
     }
   },
+  created () {
+    const vm = this
+    vm.getProducts()
+  },
   methods: {
-    created () {
-      const vm = this
-      vm.getProducts()
-    },
     getProducts (page = 1) {
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products?page=${page}`
       const vm = this
       vm.isLoading = true
-      vm.$http.get(api).then(response => {
+      vm.$http.get(api).then((response) => {
         vm.isLoading = false
         vm.products = response.data.products
         vm.pagination = response.data.pagination

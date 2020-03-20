@@ -1,5 +1,6 @@
 <template>
   <div>
+    <loading :active.sync="isLoading"></loading>
     <div class="detail-bg py-5">
       <form class="form-signin py-5" @submit.prevent.enter="signin">
         <h1 class="h3 mb-3 font-weight-normal text-center">請登入</h1>
@@ -25,16 +26,19 @@ export default {
       user: {
         username: '',
         password: ''
-      }
+      },
+      isLoading: false
     }
   },
   methods: {
     signin () {
       const api = `${process.env.VUE_APP_APIPATH}/admin/signin`
       const vm = this
+      vm.isLoading = true
       vm.$http.post(api, vm.user).then((response) => {
         if (response.data.success) { // 登入成功後
           vm.$router.push('/admin/products') // 跳轉至首頁
+          vm.isLoading = false
         }
       })
     }
