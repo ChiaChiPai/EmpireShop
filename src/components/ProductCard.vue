@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-6 col-6 my-3" :class="{'col-lg-4': !cardSize,'col-lg-3': cardSize}" v-for="item in childProductCard" :key="item.id">
         <div class="card product-section-bg text-center" @click="getProductDetail(item.id)" style="cursor: pointer;">
-          <div class="position-relative">
+          <div class="position-relative" style="overflow: hidden;">
             <img :src="item.imageUrl" class="product-img" alt="..." />
             <span
               class="badge badge-secondary position-absolute"
