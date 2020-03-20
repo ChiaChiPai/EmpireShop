@@ -6,7 +6,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-5 col-lg-4">
-            <div class="sideBar my-3 d-flex justify-content-center">
+            <div class="sideBar my-3 d-flex justify-content-center sticky-top" style="top:1rem;">
               <ul class="sideBar-menu h3 pt-5 pl-0">
                 <li>
                   <a href="#" @click.prevent="tempMenuSwitch"><img width="40" src="../../assets/images/lion-all.png" alt />全部商品</a>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <audio id="audioPlay">
+    <audio id="audioPlay" autoplay>
       <source src="../assets/voice/ageMusic.mp3">
     </audio>
     <a href="#" class="bar-c" @click.prevent="mute">
@@ -23,7 +23,7 @@ export default {
   },
   mounted () {
     const player = document.querySelector('#audioPlay')
-    player.play() // 要在 mounted html 程式碼渲染出來後才抓的到 DOM
+    // 要在 mounted html 程式碼渲染出來後才抓的到 DOM
     player.volume = 0.3
     player.loop = true
   },

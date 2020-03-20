@@ -3,7 +3,7 @@
     <div class="position-relative position-fixed market">
       <a href="#" @click.prevent="openModel">
         <img src="../assets/images/market.png" class="market-img" width="170" alt />
-        <h5>
+        <h5 v-if="carts.length !== 0">
           <span class="badge badge-danger position-absolute market-num">{{carts.length}}</span>
         </h5>
       </a>
@@ -80,15 +80,15 @@
                     </tr>
                   </tbody>
                 </table>
-                <h5 v-else-if="carts.length === 0">
-                  購物車沒有商品喔，趕快去
-                  <a href="#" class="text-light font-weight-bold">商城</a>逛逛!!
-                </h5>
+                <h6 v-else-if="carts.length === 0">
+                  購物車沒有商品喔，趕快去商城逛逛!!
+                </h6>
               </div>
             </div>
           </div>
           <div class="modal-footer" style="border-top:0;">
-            <a href="#" type="button" class="btn btn-primary btn-light w-100 mt-0 text-warning" @click.prevent="goPay">結帳去</a>
+            <a href="#" type="button" class="btn btn-primary btn-light w-100 mt-0 text-warning" v-if="carts.length !== 0" @click.prevent="goPay">結帳去</a>
+            <a href="#" type="button" class="btn btn-primary btn-light w-100 mt-0 text-warning" v-else-if="carts.length === 0" @click.prevent="goShop">來去商城逛逛</a>
           </div>
         </div>
       </div>
@@ -135,6 +135,11 @@ export default {
       const vm = this
       $('#productModal').modal('hide')
       vm.$router.push('/cart')
+    },
+    goShop () {
+      const vm = this
+      $('#productModal').modal('hide')
+      vm.$router.push('/shop')
     },
     getProductDetail (id) {
       const vm = this
