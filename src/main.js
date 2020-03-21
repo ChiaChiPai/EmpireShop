@@ -14,6 +14,7 @@ import router from './router'
 import './bus'
 import currencyFilter from './filter/Currency'
 import toDate from './filter/toDate'
+import toLocalDate from './filter/toLocalDate'
 
 Vue.use(VeeValidate) // 啟用API
 Validator.localize('zh-TW', TW) // 啟用語言包
@@ -28,6 +29,7 @@ Vue.component('Loading', Loading) // 因為 Loading 是元件，必須被啟用�
 /* eslint-disable no-new */
 Vue.filter('currency', currencyFilter)
 Vue.filter('toDate', toDate)
+Vue.filter('toLocalDate', toLocalDate)
 
 // validator 自訂手機號碼檢查
 const cellphone = {

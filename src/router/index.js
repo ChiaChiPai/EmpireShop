@@ -19,6 +19,11 @@ export default new Router({
           component: () => import('../views/front/Home.vue')
         },
         {
+          path: 'news',
+          name: 'News',
+          component: () => import('../views/front/News.vue')
+        },
+        {
           path: 'shop',
           name: 'Shop',
           component: () => import('../views/front/Shop.vue')

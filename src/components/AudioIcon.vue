@@ -26,6 +26,7 @@ export default {
     // 要在 mounted html 程式碼渲染出來後才抓的到 DOM
     player.volume = 0.3
     player.loop = true
+    player.muted = true
   },
   methods: {
     mute () {

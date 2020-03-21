@@ -157,7 +157,7 @@ export default {
   bottom: 1.5rem;
   z-index: 10;
   .market-img {
-    filter: opacity(80%);
+    filter: opacity(70%);
   }
   .market-num {
     border-radius: 50%;
@@ -171,7 +171,9 @@ export default {
     }
   }
   &:hover {
-    filter: opacity(100%);
+    .market-img {
+      filter: opacity(100%);
+    }
   }
 }
 .productDetail{

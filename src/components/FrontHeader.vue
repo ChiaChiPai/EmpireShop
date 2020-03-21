@@ -35,7 +35,7 @@
         <div class="collapse navbar-collapse mt-2 mt-lg-0" id="navbarNavAltMarkup">
           <div class="navbar-nav h5 justify-content-around row flex-row no-gutters" style="width:100%;">
             <router-link to="/home" class="nav-item nav-link header_button col-sm-6 col-lg-2"><span class="header_button-text">首頁</span></router-link>
-            <a href="#" @click.prevent="toNews" class="nav-item nav-link header_button col-sm-6 col-lg-2"><span class="header_button-text">最新消息</span></a>
+            <router-link to="/news" class="nav-item nav-link header_button col-sm-6 col-lg-2"><span class="header_button-text">最新消息</span></router-link>
             <router-link to="/shop" class="nav-item nav-link header_button col-sm-6 col-lg-2"><span class="header_button-text">世紀商城</span></router-link>
             <router-link to="/cart" class="nav-item nav-link header_button col-sm-6 col-lg-2"><span class="header_button-text">購物車</span></router-link>
             <a href="https://github.com/ChiaChiPai" target="_blank" class="nav-item nav-link header_button col-sm-6 col-lg-2"><span class="header_button-text">關於</span></a> <!-- 之後改放履歷 -->
@@ -53,13 +53,6 @@ import AudioPlay from '../components/AudioIcon.vue'
 export default {
   components: {
     AudioPlay
-  },
-  methods: {
-    toNews () {
-      const vm = this
-      vm.$router.push('/home').catch(console.log('error'))
-      vm.$emit('toNews')
-    }
   }
 }
 </script>

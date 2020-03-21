@@ -9,6 +9,7 @@
 //通用
 @import "./helpers/mixin";
 @import "./helpers/utility";
+@import "./helpers/base";
 
 //前台
 @import "./layout/frontFooter";
@@ -19,6 +20,7 @@
 @import "./pages/home";
 @import "./pages/payment";
 @import "./pages/shop";
+@import "./pages/news";
 
 //後台
 @import "./layout/backNavbar";
