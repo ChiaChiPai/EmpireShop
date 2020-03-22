@@ -3,8 +3,7 @@
     <loading :active.sync="isLoading"></loading>
     <main>
       <div class="news_banner"></div>
-      <!-- 介紹內容 -->
-      <div class="bg-cover main_content-bg">
+      <div class="bg-cover main_content-bg" id="newsTop">
         <div class="row">
           <div class="container part_news_bg my-5">
             <div class="d-flex container align-items-center pt-3" style="border-bottom: 3px double rgba(173, 145, 122, 0.884);">
@@ -107,6 +106,8 @@
 </template>
 
 <script>
+import $ from 'jquery'
+
 export default {
   data () {
     return {
@@ -122,9 +123,12 @@ export default {
   created () {
     const vm = this
     vm.getFB_Content()
+    setTimeout(() => {
+      const topPositon = $('#newsTop').offset().top
+      $('html, body').animate({ scrollTop: topPositon }, 800)
+    }, 10)
   },
   methods: {
-    // get page_id
     getFB_Content () {
       const api = 'https://cors-anywhere.herokuapp.com/https://graph.facebook.com/v6.0/ageEmpireShop/feed?access_token=EAAL5Tx0lRX0BAPWlyqaK1X82SwV29NyW1VPoSfKsI5TiXghZAVugInKEFhuNdWfYsG6DWKg5qrBTOqRnC5QUrIyRQnaGZAu2jZAv3iqFHpZA1gWdyEMxoMEPw9kUgA9frCZArxDKO7h0YZC8fvmA8ZAHaapgI4RXYe0wUhZCrK4NYAZDZD'
       const vm = this
@@ -144,13 +148,11 @@ export default {
         }
       })
     },
-    // get page_data
     getFBContent () {
       const vm = this
       for (let i = 0; i <= vm.fb_Id.length; i++) {
         const id = vm.fb_Id[i]
         vm.$http.get(`https://cors-anywhere.herokuapp.com/https://graph.facebook.com/v2.2/${id}?fields=attachments&access_token=EAAL5Tx0lRX0BAPWlyqaK1X82SwV29NyW1VPoSfKsI5TiXghZAVugInKEFhuNdWfYsG6DWKg5qrBTOqRnC5QUrIyRQnaGZAu2jZAv3iqFHpZA1gWdyEMxoMEPw9kUgA9frCZArxDKO7h0YZC8fvmA8ZAHaapgI4RXYe0wUhZCrK4NYAZDZD`, { withCredentials: false }).then((response) => {
-          // 因為有兩筆資料在 v-for 裡要讀取，所以使用解構賦值做合併，出來的資料會加上 Data
           const newArr = {
             ...response.data.attachments.data[0]
           }

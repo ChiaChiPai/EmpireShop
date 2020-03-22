@@ -161,7 +161,7 @@ export default {
         if (result) {
           vm.$http.post(api, { data: vm.form }).then(response => {
             vm.isLoading = false
-            vm.$router.push(`/cart/checkout/${response.data.orderId}`) // 使用回傳的 orderId 導向下一個付款頁面
+            vm.$router.push(`/cart/checkout/${response.data.orderId}`)
           })
         } else {
           vm.isLoading = false

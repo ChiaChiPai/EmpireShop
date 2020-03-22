@@ -36,8 +36,8 @@ export default {
       const vm = this
       vm.isLoading = true
       vm.$http.post(api, vm.user).then((response) => {
-        if (response.data.success) { // 登入成功後
-          vm.$router.push('/admin/products') // 跳轉至首頁
+        if (response.data.success) {
+          vm.$router.push('/admin/products')
           vm.isLoading = false
         }
       })

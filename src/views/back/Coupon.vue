@@ -164,7 +164,7 @@ export default {
     return {
       couponList: [],
       addCoupon: {},
-      tempCoupon: {}, // 暫存的資料存在這裡
+      tempCoupon: {},
       editIsNew: false,
       pagination: {}
     }

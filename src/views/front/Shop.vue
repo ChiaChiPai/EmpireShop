@@ -36,7 +36,6 @@
           <h5 v-else class="text-warning h4 mt-3 text-center">小編正在趕上架喔....</h5>
           <!-- 頁數 -->
           <Pagination class="d-flex justify-content-center" :childPaginations="pagination" :cardSize="sizeCol4" @changePage="getPageProducts" v-if="filterProducts.length>10"></Pagination>
-          <!-- $emit 觸發 @changePage(不是click) ，之後才觸發 getPageProducts(不用再寫()帶參數，已經自帶參數)。 -->
           </div>
         </div>
       </div>
@@ -108,9 +107,6 @@ export default {
       if (vm.$route.query.category) {
         vm.tempMenu = vm.$route.query.category
       }
-      // 接收 Detail 麵包屑回來的網址資料會變成 shop?category=獨家技術
-      // 這時就可以使用 this.$route.query.category 去撈 "category=獨家技術" 的資料
-      // 藉此改變 this.tempMenu 分類
     },
 
     // 切換商品頁面
@@ -123,10 +119,6 @@ export default {
     }
   },
   computed: {
-    // 三、問題: 在切換到別的主題時，存在第二頁的商品只會存在第二頁，必須切換頁面才看的到?
-    // 解決:一開始 filterData 從所有資料(allProducts)的頁面抓取做過濾，
-    // 當 filterData 那個頁面內的資料超過 10 筆時，改從分頁資料(pagePaginations)做抓取
-    // 因為要做頁數出現與否的判斷，多新增的 filterProductsion 的資料讓 v-if="filterProducts.length>10" 判斷
     productsFilter () {
       const vm = this
       const filterData = vm.allProducts.filter((item) => {

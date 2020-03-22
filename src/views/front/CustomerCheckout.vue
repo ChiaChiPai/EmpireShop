@@ -55,7 +55,6 @@
                 </tr>
               </tbody>
             </table>
-
             <div class="text-center mt-5">
               <button class="btn btn-dark btn-lg w-100" v-if="!orderList.is_paid" @click.prevent="payComfirm">確認付款</button>
               <router-link class="btn btn-dark btn-lg w-100" v-else to="/shop">商城逛逛</router-link>
@@ -102,7 +101,6 @@ export default {
       orderId: '',
       orderList: {
         user: {}
-        // 主要是課程中有提到所有的變數盡可能「預先定義」，否則即使遠端資料雖然是可以讀取到，但是 Vue 無法辨認這個資料，所以會出現 undefined
       },
       productInfo: [],
       couponRate: 1
@@ -126,9 +124,9 @@ export default {
         vm.isLoading = false
         vm.orderList = response.data.order
         vm.productInfo = response.data.order.products
-        const keyId = Object.keys(vm.productInfo)[0]// 使用 keys 取出物件中的 id 值
+        const keyId = Object.keys(vm.productInfo)[0]
         if (vm.productInfo[keyId].coupon) {
-          vm.couponRate = (vm.productInfo[keyId].coupon.percent) * 0.01 // 取出優惠價格
+          vm.couponRate = (vm.productInfo[keyId].coupon.percent) * 0.01
         }
       })
     },

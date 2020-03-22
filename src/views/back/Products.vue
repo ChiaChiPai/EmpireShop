@@ -61,8 +61,6 @@
                     <i class="fas fa-spinner fa-spin" v-if="fileUploading"></i>
                   </label>
                   <input type="file" id="customFile" class="form-control" ref="upload" @change="uploadFile"/>
-                  <!-- ref="upload" 必掛， 上傳的檔案 file，會放在 upload 裡面，Ajax 中需要透過 DOM 來取得 input file 內的上傳檔案
-會透過 ref 來指向該目標，在使用 js  來取得檔案資訊並上傳-->
                 </div>
                 <img
                   img="https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=828346ed697837ce808cae68d3ddc3cf&auto=format&fit=crop&w=1350&q=80"
@@ -161,7 +159,7 @@ export default {
   data () {
     return {
       products: [],
-      tempProduct: {}, // 新增的資料存在這裡
+      tempProduct: {},
       editIsNew: false,
       deleteKey: 0,
       isLoading: false,
@@ -187,12 +185,12 @@ export default {
     openModel (isNew, item) {
       const vm = this
       $('#productModal').modal('show')
-      if (isNew) { // 如果 isNew 是 true
-        vm.tempProduct = {} // 將 model 內容清空
-        vm.editIsNew = true // 將編輯狀態是新的改成 true，代表是新增的產品
-      } else { // 如果 isNew 是 false
-        vm.tempProduct = Object.assign({}, item) // 將 item 將 item 的內容放回 tempProduct
-        vm.editIsNew = false // 將編輯狀態是新的改成 false，代表是需要編輯的產品
+      if (isNew) {
+        vm.tempProduct = {}
+        vm.editIsNew = true
+      } else {
+        vm.tempProduct = Object.assign({}, item)
+        vm.editIsNew = false
       }
     },
     updataProduct () {
@@ -204,14 +202,12 @@ export default {
         httpStatus = 'put'
       }
       vm.$http[httpStatus](api, { data: vm.tempProduct }).then((response) => {
-        // [httpStatus]是把字串變成變數的方法，傳入的是'post'、'put'，透過 [] 轉成 post、put
-        // 因為後端的資料型態是 {data:{ }}，所以傳出去的資料也要符合這個格式
-        if (response.data.success) { // 新增成功時
-          $('#productModal').modal('hide') // 將 model 的視窗關掉
-          vm.getProducts() // 更新產品列表
-        } else { // 新增失敗時
-          $('#productModal').modal('hide')// 將 model 的視窗關掉
-          vm.getProducts()// 更新產品列表
+        if (response.data.success) {
+          $('#productModal').modal('hide')
+          vm.getProducts()
+        } else {
+          $('#productModal').modal('hide')
+          vm.getProducts()
         }
       })
     },
@@ -224,7 +220,7 @@ export default {
       const vm = this
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/product/${vm.products[vm.deleteKey].id}`
       vm.$http.delete(api).then(response => {
-        vm.getProducts()// 更新產品列表
+        vm.getProducts()
         $('#deleteModal').modal('hide')
       })
     },
@@ -236,13 +232,12 @@ export default {
       formData.append('file-to-upload', uploadedFile)
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/upload`
       vm.$http.post(url, formData, {
-        headers: { // 居然要加 s
+        headers: {
           'Content-Type': 'multipart/form-data'
-          // 傳送「檔案」必須使用表單的形式，所以在此把傳送的類型改為 form-data 喔
         }
       }).then(response => {
         if (response.data.success) {
-          vm.$set(vm.tempProduct, 'imageUrl', response.data.imageUrl) // 因為 imageUrl 未事先定義，所以必須使用 $set 強制寫進去
+          vm.$set(vm.tempProduct, 'imageUrl', response.data.imageUrl)
           vm.fileUploading = false
           vm.$bus.$emit('message:push', '檔案上傳成功', 'success')
         } else {

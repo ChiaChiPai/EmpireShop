@@ -122,7 +122,7 @@ export default {
           email: '',
           address: ''
         }
-      }], // 要注意資料的格式，不然資料讀取會出錯
+      }],
       tempOrder: {
         user: {
           name: ''

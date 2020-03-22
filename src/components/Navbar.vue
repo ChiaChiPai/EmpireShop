@@ -29,12 +29,6 @@
         </ul>
       </div>
     </nav>
-    <!-- <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Company name</a>
-      <ul class="navbar-nav px-3">
-
-      </ul>
-    </nav> -->
   </div>
 </template>
 
@@ -45,8 +39,8 @@ export default {
       const api = `${process.env.VUE_APP_APIPATH}/logout`
       const vm = this
       vm.$http.post(api).then((response) => {
-        if (response.data.success) { // 登入成功後
-          vm.$router.push('/login') // 跳轉至首頁
+        if (response.data.success) {
+          vm.$router.push('/login')
         }
       })
     },

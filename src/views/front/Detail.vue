@@ -141,18 +141,17 @@ export default {
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/product/${vm.detailId}`
       vm.$http.get(api).then((response) => {
         vm.productDetail = response.data.product
-        vm.productDetail.num = 1 // 將原本的編碼 num 改成數量的運用，將 num = 1 時，才能在下拉式選單的 v-model 出現
+        vm.productDetail.num = 1
         vm.isLoading = false
       })
     },
     goBackCategory () {
       const vm = this
       vm.$router.push({ path: '/shop', query: { category: vm.productDetail.category } })
-      // 使用 query 將目前在的分頁的 productDetail.category 傳回 /shop 的頁面
     },
     hotProductDetail (id) {
       const vm = this
-      vm.detailId = id // 將 vm.datailId 重新指向熱門商品的 item.id，之後再觸發一次 vm.getProductDetail() 得到熱銷商品的資訊
+      vm.detailId = id
       vm.$router.push(`/detail/${vm.detailId}`)
       vm.getProductDetail()
     },
@@ -194,12 +193,6 @@ export default {
 }
 </script>
 
-<!--
-1. 設定 router/index.js 的路徑 path: 'detail/:id',
-2. 將"查看更多"前一個頁面要導進來的 push 設定 this.$router.push(`/detail/${id}`) ，將要查找的商品 id 導進來。
-3. 進入 detail 的頁面後，先用 created 觸發 getProductDetail()。
-4. 將路由 id 存入 vm.id = vm.$route.params.id; 。 接下來就可以用這個 id 查找個別商品。
--->
 <style lang="scss">
 .hvr-icon-buzz:active .hvr-icon,.hvr-icon-buzz:focus .hvr-icon{
   -webkit-animation-name:none;

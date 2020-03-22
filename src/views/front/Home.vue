@@ -45,7 +45,7 @@
           <div class="container content-review_bg mt-2 d-flex justify-content-between px-0">
             <swiper :options="swiperOptionReview" ref="mySwiperReview" style="height:100px" class="mx-0">
               <swiper-slide v-for="item in reviewList" :key="item.id" class="ml-3">
-                <p class="h6">{{item.user.name}} : {{item.message}}</p>
+                <p class="h6 font-weight-bolder">{{item.user.name}} : {{item.message}}</p>
               </swiper-slide>
             </swiper>
             <div class="swiper-scrollbar" style="width:10px"></div>
@@ -210,7 +210,7 @@ export default {
 
 // 計算 banner 按鈕位移距離
 const originWidth = window.innerWidth
-if (window.screen.availWidth !== originWidth) { // 如果一開始視窗不是全視窗
+if (window.screen.availWidth !== originWidth) {
   const widthOffset = (originWidth - window.screen.availWidth) * 0.5
   setTimeout(() => {
     document.querySelector('#bannerMove').style.left = `${widthOffset}px`
@@ -225,7 +225,7 @@ if (window.screen.availWidth !== originWidth) { // 如果一開始視窗不是�
     }
   }
 } else {
-  window.onresize = function () { // 如果一開始視窗就是全視窗
+  window.onresize = function () {
     const normalWidth = window.innerWidth
     if (normalWidth !== originWidth) {
       const tempWidth = (normalWidth - originWidth) * 0.5
@@ -235,22 +235,4 @@ if (window.screen.availWidth !== originWidth) { // 如果一開始視窗不是�
     }
   }
 }
-
 </script>
-
-<style lang="scss">
-#scrollbarstyle::-webkit-scrollbar {
-  width: 12px;
-  background-color: rgba(235, 214, 182, 0.479);
-}
-#scrollbarstyle::-webkit-scrollbar-thumb  {
-  border-radius: 1px;
-  box-shadow: inset 0 0 6px rgba(201, 126, 14, 0.945);
-  background-color: rgb(80, 36, 7);
-}
-#scrollbarstyle::-webkit-scrollbar-track {
-  border-radius: 1px;
-  background-color: rgba(243, 213, 169, 0.473);
-}
-
-</style>

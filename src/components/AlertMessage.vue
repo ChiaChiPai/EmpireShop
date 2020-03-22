@@ -28,7 +28,6 @@ export default {
     }
   },
   methods: {
-    // 外面傳進來而觸發的訊息
     updateMessage (message, status) {
       const timestamp = Math.floor(new Date() / 1000)
       const vm = this
@@ -56,9 +55,6 @@ export default {
   },
   created () {
     const vm = this
-    // 自定義名稱 'messsage:push'
-    // message: 傳入參數
-    // status: 樣式，預設值為 warning
     vm.$bus.$on('message:push', (message, status = 'warning') => {
       vm.updateMessage(message, status)
     })
