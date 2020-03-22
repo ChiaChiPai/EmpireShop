@@ -109,7 +109,7 @@ export default {
     const vm = this
     vm.getCart()
     vm.$bus.$on('updateCart', () => {
-      vm.addMessage()
+      vm.getCart()
     })
   },
   methods: {
@@ -118,14 +118,6 @@ export default {
       const vm = this
       vm.$http.get(api).then(response => {
         vm.carts = response.data.data.carts
-      })
-    },
-    addMessage () {
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`
-      const vm = this
-      vm.$http.get(api).then(response => {
-        vm.carts = response.data.data.carts
-        vm.$bus.$emit('message:push', '加入購物車成功')
       })
     },
     openModel () {
