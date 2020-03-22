@@ -29,11 +29,7 @@
 
 <script>
 export default {
-  props: {
-    // childProductCard: Array,
-    // cardSize: Boolean
-    item: []
-  },
+  props: ['item'],
   data () {
     return {
       carts: []

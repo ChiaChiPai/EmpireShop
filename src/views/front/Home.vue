@@ -7,20 +7,18 @@
             <div id="bannerMove">
               <div class="position-absolute position-relative d-none d-lg-block bannerMoveClass">
                 <a class="main_banner_center position-absolute" :class="{'active':BannerSwitch==='專屬傭兵' }" href="#" @click.prevent="tempBannerSwitch"><p class="d-none">專屬傭兵</p><img class="img-colorful" height="725" src="../../assets/images/center.png" alt=""></a>
-                <a class="main_banner_left position-absolute" href="#" :class="{'active':BannerSwitch==='獨家技術'}" @click.prevent="tempBannerSwitch"><p class="d-none">獨家技術</p><img class="img-colorful" height="725" src="../../assets/images/left.png" alt=""></a>
+                <a class="main_banner_left position-absolute" style="overflow:hidden" href="#" :class="{'active':BannerSwitch==='獨家技術'}" @click.prevent="tempBannerSwitch"><p class="d-none">獨家技術</p><img class="img-colorful" height="725" src="../../assets/images/left.png" alt=""></a>
                 <a class="main_banner_right position-absolute" href="#" :class="{'active':BannerSwitch==='十大建設'}" @click.prevent="tempBannerSwitch"><p class="d-none">十大建設</p><img class="img-colorful" height="725" src="../../assets/images/right.png" alt=""></a>
               </div>
             </div>
           </div>
       </div>
-      <!-- <div class="divider"></div> -->
-      <!-- 介紹內容 -->
       <div class="bg-cover main_content-bg">
         <div class="row">
-          <div class="d-flex container align-items-center pt-5">
-            <h2 class="col-12 mb-0 text-warning h2 text-center mb-0">商城介紹</h2>
+          <div class="d-flex container align-items-center pt-5 main_content-title">
+            <h2 class="col-12 h1 text-left mb-3">商城介紹</h2>
           </div>
-          <div class="my-5 part_content-bg">
+          <div class="mb-5 part_content-bg" style="margin-top:90px">
             <div class="container d-lg-flex" style="height:100%">
               <div class="row align-items-center">
                 <iframe class="part_img col-lg-5 px-0" src="https://www.youtube.com/embed/wRTmEmTMJdw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -39,10 +37,31 @@
             </div>
           </div>
         </div>
-      </div>
-      <div class="content-product-bg" id="hotProduct">
-        <div class="container">
-          <swiper :options="swiperOption" ref="mySwiper" style="top:0">
+        <div>
+          <div class="container main_content-title d-flex pr-0">
+            <h2 class="h1 mb-3 text-left">客戶好評</h2>
+            <router-link to="/shop" class="align-self-end ml-auto btn title_entry"><h4>進入商城 <i class="fas fa-arrow-circle-right"></i></h4></router-link>
+          </div>
+          <div class="container content-review_bg mt-2 d-flex justify-content-between px-0">
+            <swiper :options="swiperOptionReview" ref="mySwiperReview" style="height:100px" class="mx-0">
+              <swiper-slide v-for="item in reviewList" :key="item.id" class="ml-3">
+                <p class="h6">{{item.user.name}} : {{item.message}}</p>
+              </swiper-slide>
+            </swiper>
+            <div class="swiper-scrollbar" style="width:10px"></div>
+          </div>
+        </div>
+        <div id="hotProduct">
+          <div class="container pt-5 main_content-title d-flex pr-0">
+            <h2 class="h1 mb-3 text-left">商品展示</h2>
+            <router-link to="/shop" class="align-self-end ml-auto btn title_entry"><h4>進入商城 <i class="fas fa-arrow-circle-right"></i></h4></router-link>
+          </div>
+          <div class="container d-flex justify-content-start px-0">
+            <a class="btn font-weight-bolder showBtn" :class="{'active':BannerSwitch==='專屬傭兵'}" @click.prevent="tempBannerSwitch">專屬傭兵</a>
+            <a class="btn font-weight-bolder mx-2 showBtn" :class="{'active':BannerSwitch==='獨家技術'}" @click.prevent="tempBannerSwitch">獨家技術</a>
+            <a class="btn font-weight-bolder showBtn" :class="{'active':BannerSwitch==='十大建設'}" @click.prevent="tempBannerSwitch">十大建設</a>
+          </div>
+          <swiper :options="swiperOption" ref="mySwiper" class="container mb-5">
             <swiper-slide v-for="itemMain in randomProducts" :key="itemMain.id">
               <div class="row justify-content-center">
                 <div class="col-7 col-md-8 col-lg-9">
@@ -77,6 +96,21 @@ export default {
   },
   data () {
     return {
+      swiperOptionReview: {
+        slidesPerView: 3,
+        speed: 100,
+        autoplay: true,
+        spaceBetween: 10,
+        loop: true,
+        loopedSlides: 10,
+        scrollbar: {
+          el: '.swiper-scrollbar'
+        },
+        scrollbarHide: false,
+        scrollbarDraggable: true,
+        scrollbarSnapOnRelease: true,
+        direction: 'vertical'
+      },
       swiperOption: {
         initialSlide: 0,
         slidesPerView: 3,
@@ -116,12 +150,14 @@ export default {
       sizeCol: true,
       fb_Id: [],
       pageContent: [],
+      reviewList: [],
       isLoading: false
     }
   },
   created () {
     const vm = this
     vm.getProducts()
+    vm.getReview()
   },
   methods: {
     getProducts () {
@@ -138,6 +174,13 @@ export default {
       vm.BannerSwitch = e.currentTarget.text
       const topPositon = $('#hotProduct').offset().top
       $('html, body').animate({ scrollTop: topPositon }, 800)
+    },
+    getReview () {
+      const vm = this
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/orders?page=1`
+      vm.$http.get(api).then((response) => {
+        vm.reviewList = response.data.orders.concat(response.data.orders)
+      })
     }
   },
   computed: {

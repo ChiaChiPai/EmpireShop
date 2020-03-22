@@ -105,6 +105,23 @@
   background-position: top center;
   overflow: hidden;
 }
+
+.main_content-title{
+  border-bottom: 2px double $warning;
+  border-color: darken($warning, 10%);
+  border-radius: 0;
+  color: darken($warning, 10%);
+  .title_entry{
+    border: 2px double darken($warning, 10%);
+    border-radius: 0;
+    background-color: rgba(58, 58, 58, 0.466);
+    color: darken($warning, 20%);
+    &:hover,&.active{
+      color: lighten($warning, 10%);
+    }
+  }
+}
+
 .part_content-bg {
   //固定背景圖的方法
   background-image: url($image+"memo-paper.png");
@@ -166,60 +183,21 @@
   }
 }
 
-//product
-.content-product-bg {
-  background-image: url($image+"darken-yellowPaper.jpg");
-  width: 100%;
+//customer review
+.content-review_bg{
+  background-color: rgba(226, 212, 212, 0.486);
+  color:black;
 }
 
-//product-section
-.product-section-bg {
-  background-color: $warning;
-  border: 8px solid $light;
-  border-radius: 0;
-  box-shadow: inset 0px 0px 7px 2px $light;
-  padding: 0 1rem;
-  .card-title {
-    font-weight: bold;
-  }
-  .product-img {
-    width: 100%;
-  }
-  &:hover{
-    .product-img {
-      transform: scale(1.15);
-      transition: all 0.5s ease 0s;
-    }
-  }
-}
 
-.product-btn {
-  border: 4px solid $light;
-  border-width: 8px 0 0 0;
-  font-weight: 1000;
-  width: 100%;
-  margin-top: 0.5rem;
+// productShow
+.btn.showBtn{
+  border: 2px double darken($warning, 10%);
+  border-top: 0;
   border-radius: 0;
-  text-align: center;
-  color: $warning;
-  background-color: $light;
-  &:hover {
-    background-color: $warning;
-    color: $light;
-  }
-  @media (min-width: 767px) {
-    border-width: 4px;
-  }
-  &.product-btn-left {
-    margin-left: -1rem;
-    @media (min-width: 767px) {
-      margin-left: 0;
-    }
-  }
-  &.product-btn-right {
-    margin-right: -1rem;
-    @media (min-width: 767px) {
-      margin-right: 0;
-    }
+  background-color: rgba(58, 58, 58, 0.466);
+  color: darken($warning, 20%);
+  &:hover,&.active{
+    color: lighten($warning, 10%);
   }
 }

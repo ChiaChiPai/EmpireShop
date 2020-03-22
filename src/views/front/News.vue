@@ -58,33 +58,33 @@
                 <div class="tab-pane fade" id="pills-system" role="tabpanel" aria-labelledby="pills-system-tab">
                   <div class="row text-warning px-5 py-3" style="border-bottom: 0.5px solid rgba(173, 145, 122, 0.884);">
                     <div class="col-1 mb-0">
-                      <p>2020/03/15</p>
+                      <p class="h6">2020/03/15</p>
                     </div>
-                    <div class="col-11 mb-0">
+                    <div class="col-10 ml-auto mb-0">
                       <p class="h6 mt-4 mt-lg-0">預計 2020/3/24 00:00~07:00 系統維護，造成不便之處，敬請見諒</p>
                     </div>
                   </div>
                   <div class="row text-warning px-5 py-3" style="border-bottom: 0.5px solid rgba(173, 145, 122, 0.884);">
                     <div class="col-1 mb-0">
-                      <p>2020/03/10</p>
+                      <p class="h6">2020/03/10</p>
                     </div>
-                    <div class="col-11">
+                    <div class="col-10 ml-auto">
                       <p class="h6 mt-4 mt-lg-0">預計 2020/3/20 00:00~05:00 系統維護，造成不便之處，敬請見諒</p>
                     </div>
                   </div>
                   <div class="row text-warning px-5 py-3" style="border-bottom: 0.5px solid rgba(173, 145, 122, 0.884);">
                     <div class="col-1 mb-0">
-                      <p>2020/01/20</p>
+                      <p class="h6">2020/01/20</p>
                     </div>
-                    <div class="col-11">
+                    <div class="col-10 ml-auto">
                       <p class="h6 mt-4 mt-lg-0">預計 2020/2/01 00:00~05:00 系統維護，造成不便之處，敬請見諒</p>
                     </div>
                   </div>
                   <div class="row text-warning px-5 py-3" style="border-bottom: 0.5px solid rgba(173, 145, 122, 0.884);">
                     <div class="col-1 mb-0">
-                      <p>2020/01/02</p>
+                      <p class="h6">2020/01/02</p>
                     </div>
-                    <div class="col-11">
+                    <div class="col-10 ml-auto">
                       <p class="h6 mt-4 mt-lg-0">因一萬人同時上線導致網站流量過載，工程師團隊在這邊深感抱歉，為表達本公司歉意，現在開始到二月底，全站九折優惠</p>
                     </div>
                   </div>
@@ -92,7 +92,7 @@
                     <div class="col-1 mb-0">
                       <p>2019/12/20</p>
                     </div>
-                    <div class="col-11">
+                    <div class="col-10 ml-auto">
                       <p class="h6 mt-4 mt-lg-0">預計 2020/1/1 00:00~02:00 系統維護，造成不便之處，敬請見諒</p>
                     </div>
                   </div>
