@@ -40,21 +40,13 @@
           </div>
         </div>
       </div>
-      <!-- 最新消息 -->
-      <div id="news" name="news" class="swiper-container">
-        <img class="swiper-bg" src="../../assets/images/block-bg.jpg" alt="">
-        <h3 class="position-absolute swiper-news">最新消息</h3>
-        <!-- <div class="swiper-wrapper position-absolute" style="top:0"> -->
-          <swiper :options="swiperOption" ref="mySwiper" class="swiper-wrapper position-absolute" style="top:0">
-            <!-- slides -->
-            <swiper-slide  v-for="item in pageContent" :key="item.id">
-              <div class="card bg-warning" style="width: 15rem;">
-                <a :href="item.url" target="_blank">
-                  <img :src="item.media.image.src" class="card-img-top img-cover" height="200" alt="臉書粉專圖">
-                </a>
-                <span class="position-absolute h3" style="left:0.5rem; color:rgba(122, 116, 107, 0.63)"><i class="fab fa-facebook-square"></i></span>
-                <div class="card-body p-2" >
-                  <p class="card-text h6" id="scrollbarstyle" style="height:100px; overflow-y:auto;">{{item.description}}</p>
+      <div class="content-product-bg" id="hotProduct">
+        <div class="container">
+          <swiper :options="swiperOption" ref="mySwiper" style="top:0">
+            <swiper-slide v-for="itemMain in randomProducts" :key="itemMain.id">
+              <div class="row justify-content-center">
+                <div class="col-7 col-md-8 col-lg-9">
+                  <ProductCard :item="itemMain"></ProductCard>
                 </div>
               </div>
             </swiper-slide>
@@ -62,11 +54,6 @@
             <div class="swiper-button-prev sw" slot="button-prev"></div>
             <div class="swiper-button-next sw" slot="button-next"></div>
           </swiper>
-        <img src="../../assets/images/leaf2.png" style="z-index:10; position:absolute; bottom:0; left:-20%; filter: contrast(100%);" height="200" alt="">
-      </div>
-      <div class="content-product-bg" id="hotProduct">
-        <div class="container">
-          <ProductCard :childProductCard="randomProducts" :cardSize="sizeCol3"></ProductCard>
         </div>
       </div>
       <MarketCart></MarketCart>
@@ -93,11 +80,18 @@ export default {
       swiperOption: {
         initialSlide: 0,
         slidesPerView: 3,
-        direction: 'horizontal',
-        autoplay: {
-          delay: 5000,
-          disableOnInteraction: false
+        effect: 'coverflow',
+        autoplay: true,
+        coverflowEffect: {
+          rotate: 10,
+          stretch: 0,
+          depth: 100,
+          modifier: 1
         },
+        loop: true,
+        centeredSlides: true,
+        loopedSlides: 6,
+        direction: 'horizontal',
         navigation: {
           nextEl: '.swiper-button-next.sw',
           prevEl: '.swiper-button-prev.sw'
@@ -108,18 +102,18 @@ export default {
             spaceBetween: 0
           },
           768: {
-            slidesPerView: 2,
+            slidesPerView: 1,
             spaceBetween: 10
           },
           992: {
-            slidesPerView: 3,
+            slidesPerView: 2,
             spaceBetween: 30
           }
         }
       },
       allProducts: [],
       BannerSwitch: '專屬傭兵',
-      sizeCol3: true,
+      sizeCol: true,
       fb_Id: [],
       pageContent: [],
       isLoading: false
@@ -128,38 +122,8 @@ export default {
   created () {
     const vm = this
     vm.getProducts()
-    vm.getFB_Content()
   },
   methods: {
-    // get page_id
-    getFB_Content () {
-      const api = 'https://cors-anywhere.herokuapp.com/https://graph.facebook.com/v6.0/ageEmpireShop/feed?access_token=EAAL5Tx0lRX0BAPWlyqaK1X82SwV29NyW1VPoSfKsI5TiXghZAVugInKEFhuNdWfYsG6DWKg5qrBTOqRnC5QUrIyRQnaGZAu2jZAv3iqFHpZA1gWdyEMxoMEPw9kUgA9frCZArxDKO7h0YZC8fvmA8ZAHaapgI4RXYe0wUhZCrK4NYAZDZD'
-      // const api = `/graph/v6.0/ageEmpireShop/feed?access_token=EAAL5Tx0lRX0BAPWlyqaK1X82SwV29NyW1VPoSfKsI5TiXghZAVugInKEFhuNdWfYsG6DWKg5qrBTOqRnC5QUrIyRQnaGZAu2jZAv3iqFHpZA1gWdyEMxoMEPw9kUgA9frCZArxDKO7h0YZC8fvmA8ZAHaapgI4RXYe0wUhZCrK4NYAZDZD`;
-      const vm = this
-      vm.isLoading = true
-      vm.$http.get(api, { withCredentials: false }).then((response) => {
-        const dataArr = response.data.data
-        vm.fb_Id = dataArr.map((item) => {
-          return item.id
-        }
-        )
-        if (vm.fb_Id) { // 等 id 有資料後再觸發 getFBContent()
-          vm.getFBContent()
-        }
-      })
-    },
-    // get page_data
-    getFBContent () {
-      const vm = this
-      for (let i = 0; i <= vm.fb_Id.length; i++) {
-        const id = vm.fb_Id[i]
-        // vm.$http.get(`/graph/v2.2/${id}?fields=attachments&access_token=EAAL5Tx0lRX0BAPWlyqaK1X82SwV29NyW1VPoSfKsI5TiXghZAVugInKEFhuNdWfYsG6DWKg5qrBTOqRnC5QUrIyRQnaGZAu2jZAv3iqFHpZA1gWdyEMxoMEPw9kUgA9frCZArxDKO7h0YZC8fvmA8ZAHaapgI4RXYe0wUhZCrK4NYAZDZD`).then((response) => {
-        vm.$http.get(`https://cors-anywhere.herokuapp.com/https://graph.facebook.com/v2.2/${id}?fields=attachments&access_token=EAAL5Tx0lRX0BAPWlyqaK1X82SwV29NyW1VPoSfKsI5TiXghZAVugInKEFhuNdWfYsG6DWKg5qrBTOqRnC5QUrIyRQnaGZAu2jZAv3iqFHpZA1gWdyEMxoMEPw9kUgA9frCZArxDKO7h0YZC8fvmA8ZAHaapgI4RXYe0wUhZCrK4NYAZDZD`, { withCredentials: false }).then((response) => {
-          vm.pageContent.push(response.data.attachments.data[0])
-        })
-      }
-      vm.isLoading = false
-    },
     getProducts () {
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products/all`
       const vm = this
@@ -183,10 +147,10 @@ export default {
         return vm.BannerSwitch === item.category
       })
       const newArray = []
-      if (filterData.length <= 4) {
+      if (filterData.length <= 6) {
         return filterData
       } else {
-        for (let index = 0; index < 4; index++) {
+        for (let index = 0; index < 6; index++) {
           const n = Math.floor(Math.random() * filterData.length)
           newArray.push(filterData[n])
           filterData.splice(n, 1)

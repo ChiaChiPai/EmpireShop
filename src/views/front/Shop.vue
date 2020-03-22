@@ -28,7 +28,11 @@
           </div>
           <div class="col-md-7 col-lg-8">
           <!-- 商品列表 -->
-          <ProductCard :childProductCard="productsFilter" v-if="productsFilter.length !== 0"></ProductCard>
+          <div class="row" v-if="productsFilter.length !== 0">
+            <div class="col-md-6 col-6 my-3 col-lg-4" v-for="itemMain in productsFilter" :key="itemMain.id">
+              <ProductCard :item="itemMain"></ProductCard>
+            </div>
+          </div>
           <h5 v-else class="text-warning h4 mt-3 text-center">小編正在趕上架喔....</h5>
           <!-- 頁數 -->
           <Pagination class="d-flex justify-content-center" :childPaginations="pagination" :cardSize="sizeCol4" @changePage="getPageProducts" v-if="filterProducts.length>10"></Pagination>

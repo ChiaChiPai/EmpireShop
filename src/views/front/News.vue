@@ -1,5 +1,6 @@
 <template>
   <div>
+    <loading :active.sync="isLoading"></loading>
     <main>
       <div class="news_banner"></div>
       <!-- 介紹內容 -->
@@ -114,13 +115,13 @@ export default {
       fbDate: [],
       page: 0,
       currentPage: 0,
-      pageContent: []
+      pageContent: [],
+      isLoading: false
     }
   },
   created () {
     const vm = this
     vm.getFB_Content()
-    vm.changePage()
   },
   methods: {
     // get page_id
@@ -156,6 +157,7 @@ export default {
           newArr.date = vm.fbDate[i]
           vm.fbContent.push(newArr)
           vm.changePage()
+          vm.isLoading = false
         })
       }
     },

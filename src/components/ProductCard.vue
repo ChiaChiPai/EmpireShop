@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="row">
-      <div class="col-md-6 col-6 my-3" :class="{'col-lg-4': !cardSize,'col-lg-3': cardSize}" v-for="item in childProductCard" :key="item.id">
+    <!-- <div class="row">
+      <div class="col-md-6 col-6 my-3" :class="{'col-lg-4': !cardSize,'col-lg-10': cardSize}" v-for="item in childProductCard" :key="item.id"> -->
         <div class="card product-section-bg text-center" @click="getProductDetail(item.id)" style="cursor: pointer;">
           <div class="position-relative" style="overflow: hidden;">
             <img :src="item.imageUrl" class="product-img" alt="..." />
@@ -23,15 +23,16 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
+    <!-- </div>
+  </div> -->
 </template>
 
 <script>
 export default {
   props: {
-    childProductCard: Array,
-    cardSize: Boolean
+    // childProductCard: Array,
+    // cardSize: Boolean
+    item: []
   },
   data () {
     return {

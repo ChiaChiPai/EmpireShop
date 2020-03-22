@@ -186,6 +186,7 @@ export default {
         vm.$http.post(api, { data: cart }).then((response) => {
           vm.isLoading = false
           vm.$bus.$emit('updateCart')
+          vm.$bus.$emit('message:push', '已加入購物車', 'warning')
         })
       })
     }
