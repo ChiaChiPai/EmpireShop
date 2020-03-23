@@ -179,9 +179,14 @@ export default {
     },
     getReview () {
       const vm = this
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/orders?page=1`
-      vm.$http.get(api).then((response) => {
-        vm.reviewList = response.data.orders.concat(response.data.orders)
+      const api1 = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/orders?page=1`
+      const api2 = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/orders?page=2`
+      vm.$http.get(api1).then((response) => {
+        const list1 = response.data.orders
+        vm.$http.get(api2).then((response) => {
+          const list2 = response.data.orders
+          vm.reviewList = list1.concat(list2)
+        })
       })
     }
   },
