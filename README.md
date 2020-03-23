@@ -106,8 +106,8 @@ https://chiachipai.github.io/empireShop/
 ## 聲明
 此網站僅用於練習使用，不用於任何商業用途。
 
-更多細節請至 [Demo](https://chiachipai.github.io/empireShop/) 觀看
-
 ## 心得
 沒想到有時看似簡單的功能後面原來有這麼多要處理的細節，有時一寫就忘了時間，常常寫到半夜，不過整體來說還滿享受的。
 
+
+更多細節請至 [Demo](https://chiachipai.github.io/empireShop/) 觀看
