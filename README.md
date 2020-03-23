@@ -104,9 +104,9 @@ https://chiachipai.github.io/empireShop/
 ![](https://i.imgur.com/wDRv0BM.png)
 
 ## 圖片來源
-google
-[aoetw](http://www.aoetw.com/)
-[世紀帝國官方網站](https://www.ageofempires.com/)
+google、
+[aoetw](http://www.aoetw.com/)、
+[世紀帝國官方網站](https://www.ageofempires.com/)、
 [VX 素材](https://sites.google.com/site/closetvx/picture/02)
 
 ## 聲明
