@@ -1,9 +1,13 @@
 <template>
-  <div>
-    <Alert></Alert>
-    <FrontHeader></FrontHeader>
-    <router-view></router-view>
-    <FrontFooter></FrontFooter>
+  <div class="h-100">
+    <div class="wrapper">
+      <Alert></Alert>
+      <FrontHeader class="header"></FrontHeader>
+      <div class="content">
+        <router-view></router-view>
+      </div>
+      <FrontFooter class="footer"></FrontFooter>
+    </div>
   </div>
 </template>
 
@@ -20,3 +24,18 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+  .wrapper{
+    display: flex;flex-direction: column;min-height: 100%;
+    }
+  .header{
+    flex: 0;
+    }
+  .content{
+    flex: 1;
+    }
+  .footer{
+    flex: 0;
+  }
+</style>

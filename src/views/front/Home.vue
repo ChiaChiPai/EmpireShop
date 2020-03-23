@@ -21,7 +21,9 @@
           <div class="mb-5 part_content-bg" style="margin-top:90px">
             <div class="container d-lg-flex" style="height:100%">
               <div class="row align-items-center">
-                <iframe class="part_img col-lg-5 px-0" src="https://www.youtube.com/embed/wRTmEmTMJdw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <div class="col-lg-5">
+                  <img class="part_img w-100" src="../../assets/images/content-img1.png" height="312" alt="">
+                </div>
                 <p class="h5 col-lg-7 mt-4 mt-lg-0 px-5" style="line-height: 40px;">世紀商城系統支援最即時的戰爭資源，馬上下單，立即使用，讓在在戰場上，攻無不克，戰無不勝，你就是手握王者之劍的霸主，現在加入會員還有九折優惠喔。</p>
               </div>
             </div>
@@ -44,7 +46,7 @@
           </div>
           <div class="container content-review_bg mt-2 d-flex justify-content-between px-0">
             <swiper :options="swiperOptionReview" ref="mySwiperReview" style="height:100px" class="mx-0">
-              <swiper-slide v-for="item in reviewList" :key="item.id" class="ml-3">
+              <swiper-slide v-for="(item,key) in reviewList" :key="key" class="ml-3">
                 <p class="h6 font-weight-bolder">{{item.user.name}} : {{item.message}}</p>
               </swiper-slide>
             </swiper>
