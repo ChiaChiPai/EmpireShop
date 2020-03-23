@@ -47,7 +47,7 @@
           <div class="container content-review_bg mt-2 d-flex justify-content-between px-0">
             <swiper :options="swiperOptionReview" ref="mySwiperReview" style="height:100px" class="mx-0">
               <swiper-slide v-for="(item,key) in reviewList" :key="key" class="ml-3">
-                <p class="h6 font-weight-bolder">{{item.user.name}} : {{item.message}}</p>
+                <p class="h6 font-weight-bolder">{{item.user.name}} : {{item.message || '好棒棒的商城，好棒棒的商品，好棒棒大集合'}}</p>
               </swiper-slide>
             </swiper>
             <div class="swiper-scrollbar" style="width:10px"></div>
