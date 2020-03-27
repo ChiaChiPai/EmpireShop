@@ -202,7 +202,7 @@ export default {
   },
   // 讓 swiper 重新渲染
   watch: {
-    randomProducts: function () {
+    randomProductsz () {
       const vm = this
       vm.isLoading = true
       setTimeout(() => {

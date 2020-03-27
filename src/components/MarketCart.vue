@@ -107,7 +107,7 @@ export default {
   },
   props: ['childCarts'],
   watch: {
-    childCarts: function () {
+    childCarts () {
       const vm = this
       vm.tempCount += 1
       if (vm.tempCount !== 1) {
