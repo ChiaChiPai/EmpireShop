@@ -127,7 +127,6 @@ export default {
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`
       const vm = this
       vm.$http.get(api).then((response) => {
-        console.log(response)
         vm.carts = response.data.data.carts
       })
     },
