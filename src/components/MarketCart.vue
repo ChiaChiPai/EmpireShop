@@ -3,8 +3,8 @@
     <div class="position-relative position-fixed market">
       <a href="#" @click.prevent="openModel">
         <img src="../assets/images/market.png" class="market-img" width="170" alt />
-        <h5 v-if="carts.length !== 0">
-          <span class="badge badge-danger position-absolute market-num">{{carts.length}}</span>
+        <h5 v-if="childCarts.length !== 0">
+          <span class="badge badge-danger position-absolute market-num">{{childCarts.length}}</span>
         </h5>
       </a>
     </div>
@@ -33,10 +33,10 @@
                   class="font-weight-bolder h6"
                   rules="rows"
                   cellpadding="10"
-                  v-if="carts.length !== 0"
+                  v-if="childCarts.length !== 0"
                   style="margin:0 auto;"
                 >
-                  <tbody class="productDetail" v-for="item in carts" :key="item.id" @click.prevent="getProductDetail(item.product.id)">
+                  <tbody class="productDetail" v-for="item in childCarts" :key="item.id" @click.prevent="getProductDetail(item.product.id)">
                     <tr>
                       <td style="width:20%; padding:0.3rem" class="d-none d-sm-table-cell">
                         <img
@@ -80,15 +80,15 @@
                     </tr>
                   </tbody>
                 </table>
-                <h6 v-else-if="carts.length === 0">
+                <h6 v-else-if="childCarts.length === 0">
                   購物車沒有商品喔，趕快去商城逛逛!!
                 </h6>
               </div>
             </div>
           </div>
           <div class="modal-footer" style="border-top:0;">
-            <a href="#" type="button" class="btn btn-primary btn-light w-100 mt-0 text-warning" v-if="carts.length !== 0" @click.prevent="goPay">結帳去</a>
-            <a href="#" type="button" class="btn btn-primary btn-light w-100 mt-0 text-warning" v-else-if="carts.length === 0" @click.prevent="goShop">來去商城逛逛</a>
+            <a href="#" type="button" class="btn btn-primary btn-light w-100 mt-0 text-warning" v-if="childCarts.length !== 0" @click.prevent="goPay">結帳去</a>
+            <a href="#" type="button" class="btn btn-primary btn-light w-100 mt-0 text-warning" v-else-if="childCarts.length === 0" @click.prevent="goShop">來去商城逛逛</a>
           </div>
         </div>
       </div>
@@ -102,24 +102,35 @@ import $ from 'jquery'
 export default {
   data () {
     return {
-      carts: []
+      tempCount: 0
     }
   },
-  created () {
-    const vm = this
-    vm.getCart()
-    vm.$bus.$on('updateCart', () => {
-      vm.getCart()
-    })
+  // created () {
+  //   const vm = this
+  // vm.getCart()
+  // vm.$bus.$on('updateCart', () => {
+  //   vm.getCart()
+  // })
+  // },
+  props: ['childCarts'],
+  watch: {
+    childCarts: function () {
+      const vm = this
+      vm.tempCount += 1
+      if (vm.tempCount !== 1) {
+        vm.$bus.$emit('message:push', '加入購物車成功')
+      }
+    }
   },
   methods: {
-    getCart () {
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`
-      const vm = this
-      vm.$http.get(api).then(response => {
-        vm.carts = response.data.data.carts
-      })
-    },
+    // getCart () {
+    //   const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`
+    //   const vm = this
+    //   vm.$http.get(api).then((response) => {
+    //     console.log(response)
+    //     vm.carts = response.data.data.carts
+    //   })
+    // },
     openModel () {
       $('#productModal').modal('show')
     },
@@ -136,7 +147,6 @@ export default {
     getProductDetail (id) {
       const vm = this
       $('#productModal').modal('hide')
-      // this.$router.push(`/detail/${id}`);
       vm.$emit('cartUpdateDetail', id)
     }
   }

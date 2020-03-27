@@ -63,7 +63,7 @@
             <a class="btn font-weight-bolder mx-2 showBtn" :class="{'active':BannerSwitch==='獨家技術'}" @click.prevent="tempBannerSwitch">獨家技術</a>
             <a class="btn font-weight-bolder showBtn" :class="{'active':BannerSwitch==='十大建設'}" @click.prevent="tempBannerSwitch">十大建設</a>
           </div>
-          <swiper :options="swiperOption" ref="mySwiper" class="container mb-5">
+          <swiper :options="swiperOption" ref="mySwiper" class="container mb-5" v-if="!isLoading">
             <swiper-slide v-for="itemMain in randomProducts" :key="itemMain.id">
               <div class="row justify-content-center">
                 <div class="col-7 col-md-8 col-lg-9">
@@ -77,7 +77,7 @@
           </swiper>
         </div>
       </div>
-      <MarketCart></MarketCart>
+      <MarketCart :childCarts="carts"></MarketCart>
     </main>
   </div>
 </template>
@@ -104,7 +104,6 @@ export default {
         autoplay: true,
         spaceBetween: 10,
         loop: true,
-        loopedSlides: 10,
         scrollbar: {
           el: '.swiper-scrollbar'
         },
@@ -153,15 +152,27 @@ export default {
       fb_Id: [],
       pageContent: [],
       reviewList: [],
-      isLoading: false
+      isLoading: false,
+      carts: []
     }
   },
   created () {
     const vm = this
     vm.getProducts()
     vm.getReview()
+    vm.getCart()
+    vm.$bus.$on('updateCart', () => {
+      vm.getCart()
+    })
   },
   methods: {
+    getCart () {
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`
+      const vm = this
+      vm.$http.get(api).then((response) => {
+        vm.carts = response.data.data.carts
+      })
+    },
     getProducts () {
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products/all`
       const vm = this

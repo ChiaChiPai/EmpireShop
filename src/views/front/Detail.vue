@@ -84,7 +84,7 @@
                 <a href="#" @click.prevent="hotProductDetail(item.id)" class="p-2 text-dark d-flex justify-content-between align-items-center">
                   <img width="50" :src="item.imageUrl" alt="">
                   <span class="h5 mb-0 pl-4">{{item.title}}<h6 class="text-secondary">{{item.content}}</h6></span>
-                  <span class="h5 mb-0 ml-auto">{{item.price}}</span>
+                  <span class="h5 mb-0 ml-auto">$ {{item.price}}</span>
                 </a>
                 <hr class="my-0" style="border-color:rgb(70, 39, 5)">
               </div>
@@ -92,7 +92,7 @@
           </div>
         </div>
       </div>
-      <MarketCart @cartUpdateDetail="cartUpdate"></MarketCart>
+      <MarketCart @cartUpdateDetail="cartUpdate" :childCarts="carts"></MarketCart>
     </div>
   </div>
 </template>
@@ -110,7 +110,8 @@ export default {
       productDetail: {},
       hotProducts: [],
       detailId: '',
-      isLoading: false
+      isLoading: false,
+      carts: []
     }
   },
   created () {
@@ -119,8 +120,17 @@ export default {
     vm.getProductDetail()
     vm.getHotProducts()
     $('html, body').animate({ scrollTop: 0 }, 0)
+    vm.getCart()
   },
   methods: {
+    getCart () {
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`
+      const vm = this
+      vm.$http.get(api).then((response) => {
+        console.log(response)
+        vm.carts = response.data.data.carts
+      })
+    },
     getHotProducts () {
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products/all`
       const vm = this
@@ -184,8 +194,6 @@ export default {
         }
         vm.$http.post(api, { data: cart }).then((response) => {
           vm.isLoading = false
-          vm.$bus.$emit('updateCart')
-          vm.$bus.$emit('message:push', '已加入購物車', 'warning')
         })
       })
     }

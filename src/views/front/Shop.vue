@@ -40,7 +40,7 @@
         </div>
       </div>
     </div>
-    <MarketCart></MarketCart>
+    <MarketCart :childCarts="carts"></MarketCart>
   </div>
 </template>
 
@@ -65,7 +65,8 @@ export default {
       tempMenu: '全部商品',
       pagination: {},
       sizeCol4: false,
-      isLoading: false
+      isLoading: false,
+      carts: []
     }
   },
   created () {
@@ -73,12 +74,24 @@ export default {
     vm.getAllProducts()
     vm.getPageProducts()
     vm.getParams()
+    vm.getCart()
+    vm.$bus.$on('updateCart', () => {
+      vm.getCart()
+    })
     setTimeout(() => {
       const topPositon = $('#shopTop').offset().top
       $('html, body').animate({ scrollTop: topPositon }, 800)
     }, 10)
   },
   methods: {
+    // 取得購物車資料
+    getCart () {
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`
+      const vm = this
+      vm.$http.get(api).then((response) => {
+        vm.carts = response.data.data.carts
+      })
+    },
     // 取得全部資料
     getAllProducts () {
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products/all`

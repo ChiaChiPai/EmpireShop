@@ -58,7 +58,6 @@ export default {
         }
         vm.$http.post(api, { data: cart }).then((response) => {
           vm.$bus.$emit('updateCart')
-          vm.$bus.$emit('message:push', '加入購物車成功')
         })
       })
     }
