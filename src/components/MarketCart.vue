@@ -105,13 +105,6 @@ export default {
       tempCount: 0
     }
   },
-  // created () {
-  //   const vm = this
-  // vm.getCart()
-  // vm.$bus.$on('updateCart', () => {
-  //   vm.getCart()
-  // })
-  // },
   props: ['childCarts'],
   watch: {
     childCarts: function () {
@@ -123,14 +116,6 @@ export default {
     }
   },
   methods: {
-    // getCart () {
-    //   const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`
-    //   const vm = this
-    //   vm.$http.get(api).then((response) => {
-    //     console.log(response)
-    //     vm.carts = response.data.data.carts
-    //   })
-    // },
     openModel () {
       $('#productModal').modal('show')
     },

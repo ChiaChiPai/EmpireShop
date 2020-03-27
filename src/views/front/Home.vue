@@ -45,7 +45,7 @@
             <router-link to="/shop" class="align-self-end ml-auto btn title_entry"><h4>進入商城 <i class="fas fa-arrow-circle-right"></i></h4></router-link>
           </div>
           <div class="container content-review_bg mt-2 d-flex justify-content-between px-0">
-            <swiper :options="swiperOptionReview" ref="mySwiperReview" style="height:100px" class="mx-0">
+            <swiper :options="swiperOptionReview" ref="mySwiperReview" style="height:100px" class="mx-0" v-if="!isLoading">
               <swiper-slide v-for="(item,key) in reviewList" :key="key" class="ml-3">
                 <p class="h6 font-weight-bolder">{{item.user.name}} : {{item.message || '好棒棒的商城，好棒棒的商品，好棒棒大集合'}}</p>
               </swiper-slide>
@@ -125,7 +125,6 @@ export default {
         },
         loop: true,
         centeredSlides: true,
-        loopedSlides: 6,
         direction: 'horizontal',
         navigation: {
           nextEl: '.swiper-button-next.sw',
@@ -186,7 +185,7 @@ export default {
       const vm = this
       vm.BannerSwitch = e.currentTarget.text
       const topPositon = $('#hotProduct').offset().top
-      $('html, body').animate({ scrollTop: topPositon }, 800)
+      $('html, body').animate({ scrollTop: topPositon }, 1000)
     },
     getReview () {
       const vm = this
@@ -199,6 +198,16 @@ export default {
           vm.reviewList = list1.concat(list2)
         })
       })
+    }
+  },
+  // 讓 swiper 重新渲染
+  watch: {
+    randomProducts: function () {
+      const vm = this
+      vm.isLoading = true
+      setTimeout(() => {
+        vm.isLoading = false
+      }, 500)
     }
   },
   computed: {
