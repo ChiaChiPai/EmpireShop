@@ -38,7 +38,7 @@
             <router-link to="/news" class="nav-item nav-link header_button col-sm-6 col-lg-2"><span class="header_button-text">最新消息</span></router-link>
             <router-link to="/shop" class="nav-item nav-link header_button col-sm-6 col-lg-2"><span class="header_button-text">世紀商城</span></router-link>
             <router-link to="/cart" class="nav-item nav-link header_button col-sm-6 col-lg-2"><span class="header_button-text">購物車</span></router-link>
-            <a href="https://github.com/ChiaChiPai" target="_blank" class="nav-item nav-link header_button col-sm-6 col-lg-2"><span class="header_button-text">關於</span></a> <!-- 之後改放履歷 -->
+            <a href="https://www.cakeresume.com/pai-7926c0" target="_blank" class="nav-item nav-link header_button col-sm-6 col-lg-2"><span class="header_button-text">關於作者</span></a> <!-- 之後改放履歷 -->
             <router-link to="/login" class="nav-item nav-link header_button col-sm-6 d-lg-none"><span class="header_button-text">登入</span></router-link>
           </div>
         </div>
